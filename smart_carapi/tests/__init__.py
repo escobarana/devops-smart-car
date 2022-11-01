@@ -1,6 +1,9 @@
+import os.path
 import sys
-sys.path.extend(['..\\devops-smart-car', '..\\devops-smart-car\\smart_carapi', '../devops-smart-car'])
 import unittest
+src_path = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) + '/smart_carapi/')
+sys.path.append(src_path)
+# sys.path.extend(['..\\devops-smart-car\\smart_carapi'])
 from autonomy_test import AutonomyTest
 from car_test import CarTest
 from door_test import DoorTest
