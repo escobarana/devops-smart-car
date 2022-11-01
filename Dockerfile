@@ -1,7 +1,8 @@
-FROM python:3.8.1
+# syntax=docker/dockerfile:1
+FROM python:3.8-alpine
 
-COPY ./smart_carapi ./smartcar
-
+RUN mkdir "smartcar"
+COPY . /smartcar
 WORKDIR /smartcar
 
 RUN pip install --upgrade pip && \
@@ -9,4 +10,6 @@ RUN pip install --upgrade pip && \
 
 RUN rm requirements.txt
 
-CMD ["python", "flask_app.py"]
+EXPOSE 5000
+
+CMD ["python", "app.py"]
