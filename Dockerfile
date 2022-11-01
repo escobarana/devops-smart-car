@@ -11,7 +11,6 @@ RUN pip install --upgrade pip && \
 RUN rm requirements.txt
 
 ENV ENVIRONMENT PRODUCTION
-ENV MONGO_INITDB_DATABASE smartcars
 ENV MONGO_INITDB_ROOT_USERNAME root
 ENV MONGO_INITDB_ROOT_PASSWORD rootpassword
 

@@ -1,0 +1,49 @@
+version: '3.7' # specify docker-compose version (docker -v)
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongo
+    hostname: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - "27017:27017"
+    networks:
+      - host
+    volumes:
+      - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rootpassword
+      ME_CONFIG_MONGODB_URL: mongodb://root:rootpassword@mongodb:27017/
+    ports:
+      - "8081:8081"
+    networks:
+      - host
+
+  web:
+    image: escobarana/smartcarapi:latest
+    container_name: smartcar
+    environment:
+      ENVIRONMENT: PRODUCTION
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      FLASK_DEBUG: False
+    depends_on:
+      - mongodb
+    ports:
+      - "8000:5000"
+    networks:
+      - host
+    volumes:
+      - .:/code
+
+networks:
+    host:

@@ -6,10 +6,11 @@ import logging
 logging.basicConfig()
 logger = logging.getLogger(__name__)
 
-# if os.environ['ENVIRONMENT'] == 'LOCAL':
-#     client = pymongo.MongoClient("mongodb://localhost:27017/")
-# else:
-client = pymongo.MongoClient(f"mongodb://root:rootpassword@mongodb:27017/")
+if os.environ['ENVIRONMENT'] == 'LOCAL':
+    client = pymongo.MongoClient("mongodb://localhost:27017/")
+else:
+    client = pymongo.MongoClient(f"mongodb://{os.environ['MONGO_INITDB_ROOT_USERNAME']}:"
+                                 f"{os.environ['MONGO_INITDB_ROOT_PASSWORD']}@mongodb:27017/")
 
 
 def set_up_mongodb():
@@ -19,9 +20,7 @@ def set_up_mongodb():
     :return: None
     """
     db = client["smartcars"]
-    print(db.list_collection_names())
     collection = db["cars_data"]
-    print(collection.name)
     starter_car = Car(vin='VF1RFD00653635032', plate_number='1234ABC', brand='DSTI', model='alpha',
                       color='White', num_seats=4, num_doors=5, num_wheels=4).json
     load_data_to_mongodb(document=starter_car)
@@ -88,5 +87,4 @@ def get_data_from_mongodb(collection: str = "cars_data", db: str = 'smartcars'):
     for car in col.find():
         my_list.append(car)
 
-    print(my_list)
     return my_list
