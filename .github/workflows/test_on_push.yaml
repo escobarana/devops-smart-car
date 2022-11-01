@@ -7,15 +7,12 @@ on:
     branches: [ main ]
 
 jobs:
-  run_tests:
+  run_unittests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [ 3.8 ]  # Using local settings
         mongodb-version: [ '6.0' ]  # Using local settings
-#    defaults:
-#      run:
-#        working-directory: smart_carapi
 
     steps:
       - name: Git checkout
@@ -33,8 +30,6 @@ jobs:
           cd $GITHUB_WORKSPACE
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      #- name: Append to PATH
-      #  run: echo "/devops-smart-car" >> $GITHUB_PATH
       - name: Run Tests with unittest
         run: python -m unittest smart_carapi/tests/__init__.py
       - name: Get the output time
