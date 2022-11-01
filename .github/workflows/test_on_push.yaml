@@ -30,11 +30,12 @@ jobs:
           mongodb-version: ${{ matrix.mongodb-version }}
       - name: Install requirements
         run: |
+          cd $GITHUB_WORKSPACE
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       #- name: Append to PATH
       #  run: echo "/devops-smart-car" >> $GITHUB_PATH
-      - name: Run tests with unittest
-        run: python smart_carapi/tests/__init__.py
+      - name: Run Tests with unittest
+        run: python -m unittest smart_carapi/tests/__init__.py
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
