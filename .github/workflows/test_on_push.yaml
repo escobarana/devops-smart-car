@@ -33,6 +33,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run tests with unittest
-        run: python .\smart_carapi\tests\__init__.py
+        run: python smart_carapi/tests/__init__.py
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
