@@ -16,6 +16,8 @@ jobs:
 
     env:
       ENVIRONMENT: LOCAL
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
 
     steps:
       - name: Git checkout
