@@ -1,5 +1,5 @@
 import unittest
-import flask_app as tested_app
+import smart_carapi.flask_app as tested_app
 import json
 
 

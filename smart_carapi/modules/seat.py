@@ -1,4 +1,4 @@
-from smart_carapi.modules.belt import Belt
+from modules.belt import Belt
 
 
 class Seat:

@@ -1,5 +1,5 @@
 import unittest
-from smart_carapi.modules.autonomy import Autonomy
+from modules.autonomy import Autonomy
 
 
 class AutonomyTest(unittest.TestCase):

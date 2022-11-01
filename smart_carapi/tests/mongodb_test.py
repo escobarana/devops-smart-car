@@ -1,7 +1,7 @@
 import unittest
 from smart_carapi.helpers.config_mongodb import update_document, get_data_from_mongodb, load_data_to_mongodb, \
     set_up_mongodb, client
-from car_instance.car_singleton import Car
+from smart_carapi.car_instance.car_singleton import Car
 
 
 class MongoDBTest(unittest.TestCase):
