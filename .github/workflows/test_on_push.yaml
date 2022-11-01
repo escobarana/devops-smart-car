@@ -32,9 +32,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r ../requirements.txt
-      - name: set pythonpath
-        run: |
-          echo "PYTHONPATH=." >> $GITHUB_ENV
       - name: Run tests with unittest
         run: python tests/__init__.py
       - name: Get the output time

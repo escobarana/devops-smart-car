@@ -1,3 +1,5 @@
+import sys
+sys.path.extend(['..\\devops-smart-car', '..\\devops-smart-car\\smart_carapi', '../devops-smart-car'])
 import unittest
 from autonomy_test import AutonomyTest
 from car_test import CarTest
