@@ -6,14 +6,11 @@ import logging
 logging.basicConfig()
 logger = logging.getLogger(__name__)
 
-if os.environ['ENVIRONMENT'] == 'LOCAL':
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
-else:
-    client = pymongo.MongoClient(host='mongodb',
-                                 port=27017,
-                                 username=os.environ['MONGO_INITDB_ROOT_USERNAME'],
-                                 password=os.environ['MONGO_INITDB_ROOT_PASSWORD'],
-                                 authSource="admin")
+client = pymongo.MongoClient(host='mongodb',
+                             port=27017,
+                             username=os.environ['MONGO_INITDB_ROOT_USERNAME'],
+                             password=os.environ['MONGO_INITDB_ROOT_PASSWORD'],
+                             authSource="admin")
 
 
 def set_up_mongodb():
