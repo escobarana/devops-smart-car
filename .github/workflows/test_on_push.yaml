@@ -36,6 +36,6 @@ jobs:
         run: |
           echo "PYTHONPATH=." >> $GITHUB_ENV
       - name: Run tests with unittest
-        run: python run tests/__init__.py
+        run: python tests/__init__.py
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
