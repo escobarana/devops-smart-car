@@ -1,11 +1,16 @@
 import pymongo
+import os
 from smart_carapi.car_instance.car_singleton import Car
 import logging
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
 
-client = pymongo.MongoClient("mongodb://localhost:27017/")
+if os.environ['ENVIRONMENT'] == 'LOCAL':
+    client = pymongo.MongoClient("mongodb://localhost:27017/")
+else:
+    client = pymongo.MongoClient(f"mongodb://{os.environ['MONGO_INITDB_ROOT_USERNAME']}:"
+                                 f"{os.environ['MONGO_INITDB_ROOT_PASSWORD']}@mongodb:27017/")
 
 
 def set_up_mongodb():

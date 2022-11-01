@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_restx import Api, Resource, fields
 from smart_carapi.car_instance.car_singleton import Car
-from smart_carapi.helpers.config_mongodb import set_up_mongodb, get_data_from_mongodb, load_data_to_mongodb, update_document
+from smart_carapi.helpers.config_mongodb import set_up_mongodb, get_data_from_mongodb, load_data_to_mongodb, \
+    update_document
 import logging
 
 logging.basicConfig()
@@ -82,6 +83,7 @@ car = api.model('Car', {
 
 })
 
+
 # --- END MODELS --- #
 
 
@@ -152,6 +154,7 @@ set_up_mongodb()
 logging.info('Creating Car DAO ... ')
 DAO = CarDAO()
 
+
 # starter_car = Car(vin='VF1RFD00653635032', plate_number='1234ABC', brand='DSTI', model='alpha',
 #                   color='White', num_seats=4, num_doors=5, num_wheels=4)
 # DAO.create(starter_car.json())
@@ -162,7 +165,7 @@ DAO = CarDAO()
 
 @ns.route('/')
 class CarList(Resource):
-    """Shows a list of all cars, and lets you POST to add new cars"""
+    """Shows a list of all cars, and lets you POST to add/modify cars"""
 
     @ns.doc('list_cars')
     @ns.marshal_list_with(car, skip_none=True)
@@ -251,8 +254,9 @@ class Car(Resource):
         """Update a car given its vin"""
         return DAO.update(vin, api.payload)
 
+
 # --- END ENDPOINTS --- #
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=True)
