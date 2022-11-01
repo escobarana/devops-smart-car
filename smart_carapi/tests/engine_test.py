@@ -1,4 +1,8 @@
+import os.path
+import sys
 import unittest
+src_path = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) + '/smart_carapi/')
+sys.path.append(src_path)
 from smart_carapi.modules.engine import Engine
 
 
@@ -6,6 +10,9 @@ class EngineTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(EngineTest, self).__init__(*args, **kwargs)
         self.engine = Engine()
+
+    def setUp(self):
+        sys.path.insert(0, "../smart_carapi")
 
     def test_status_engine(self):
         """

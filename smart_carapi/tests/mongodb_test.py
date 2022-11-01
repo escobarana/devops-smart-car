@@ -1,12 +1,19 @@
+import os.path
+import sys
 import unittest
+src_path = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) + '/smart_carapi/')
+sys.path.append(src_path)
 from smart_carapi.helpers.config_mongodb import update_document, get_data_from_mongodb, load_data_to_mongodb, \
     set_up_mongodb, client
-from car_instance.car_singleton import Car
+from smart_carapi.car_instance.car_singleton import Car
 
 
 class MongoDBTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(MongoDBTest, self).__init__(*args, **kwargs)
+
+    def setUp(self):
+        sys.path.insert(0, "../smart_carapi")
 
     def test_mongodb_connection(self):
         """
