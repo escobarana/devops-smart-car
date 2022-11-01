@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 if os.environ['ENVIRONMENT'] == 'LOCAL':
     client = pymongo.MongoClient("mongodb://localhost:27017/")
 else:
-    client = pymongo.MongoClient("mongodb://mongodb:27017/")
+    client = pymongo.MongoClient("mongodb://mongo:27017/")
 
 
 def set_up_mongodb():
