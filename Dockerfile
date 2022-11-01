@@ -10,6 +10,8 @@ RUN pip install --upgrade pip && \
 
 RUN rm requirements.txt
 
+ENV ENVIRONMENT PRODUCTION
+
 EXPOSE 5000
 
 CMD ["python", "app.py"]
