@@ -1,4 +1,8 @@
+import os.path
+import sys
 import unittest
+src_path = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) + '/smart_carapi/')
+sys.path.append(src_path)
 from smart_carapi.modules.wheel import Wheel
 from smart_carapi.helpers.position import Position
 
@@ -7,6 +11,9 @@ class WheelTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(WheelTest, self).__init__(*args, **kwargs)
         self.wheel = Wheel(Position.front_left)
+
+    def setUp(self):
+        sys.path.insert(0, "../smart_carapi")
 
     def test_wheel_position(self):
         """

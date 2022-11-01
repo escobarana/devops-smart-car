@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restx import Api, Resource, fields
-from car_instance.car_singleton import Car
-from helpers.config_mongodb import set_up_mongodb, get_data_from_mongodb, load_data_to_mongodb, update_document
+from smart_carapi.car_instance.car_singleton import Car
+from smart_carapi.helpers.config_mongodb import set_up_mongodb, get_data_from_mongodb, load_data_to_mongodb, update_document
 import logging
 
 logging.basicConfig()
