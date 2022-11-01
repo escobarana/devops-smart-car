@@ -1,14 +1,21 @@
 name: Build and push Docker image to Docker Hub
 on:
-  workflow_run:  # Dependency between workflows
-    workflows: ["Python CI"]
-    types: [completed]
+  push:
     branches:
       - '*'
+  pull_request:
+    branches: [ main ]
+
+# When this workflow is in main or default branch, can use the 'workflow_run'
+#  workflow_run:  # Dependency between workflows
+#    workflows: ["Python CI"]
+#    types: [completed]
+#    branches:
+#      - '*'
 
 jobs:
   push_to_registry:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Triggers only if dependent workflow is successful
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Triggers only if dependent workflow is successful
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
