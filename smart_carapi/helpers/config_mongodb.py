@@ -6,11 +6,11 @@ import logging
 logging.basicConfig()
 logger = logging.getLogger(__name__)
 
-client = pymongo.MongoClient(host='mongodb',
-                             port=27017,
-                             username=os.environ['MONGO_INITDB_ROOT_USERNAME'],
-                             password=os.environ['MONGO_INITDB_ROOT_PASSWORD'],
-                             authSource="admin")
+if os.environ['ENVIRONMENT'] == 'LOCAL':
+    client = pymongo.MongoClient("mongodb://localhost:27017/")
+else:
+    client = pymongo.MongoClient(f"mongodb://{os.environ['MONGO_INITDB_ROOT_USERNAME']}:"
+                                 f"{os.environ['MONGO_INITDB_ROOT_PASSWORD']}@mongodb/smartcars")
 
 
 def set_up_mongodb():
