@@ -39,7 +39,7 @@ services:
     depends_on:
       - mongodb
     ports:
-      - "8000:5000"
+      - "5000:5000"
     networks:
       - host
     volumes:
