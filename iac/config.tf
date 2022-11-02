@@ -14,6 +14,14 @@ terraform {
       version   = "~> 4.16"
     }
   }
+
+  cloud {
+    organization = "escobarana"
+
+    workspaces {
+      name = "gh-actions-smartcar"
+    }
+  }
 }
 
 provider "docker" {}  # Pull the image from Docker Hub
