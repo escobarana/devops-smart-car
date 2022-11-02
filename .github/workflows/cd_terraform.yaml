@@ -58,5 +58,5 @@ jobs:
 
       - name: Terraform Apply  # The deployment to AWS
         id: apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve
