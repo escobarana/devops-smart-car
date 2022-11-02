@@ -17,6 +17,10 @@ jobs:
   cd_apply_terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./iac
+
     steps:
       - name: Git checkout
         uses: actions/checkout@v3
