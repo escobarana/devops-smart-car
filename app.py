@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restx import Api, Resource, fields
-from smart_carapi.car_instance.car_singleton import Car
+from smart_carapi.car_instance.car_singleton import Car as MyCar
 from smart_carapi.helpers.config_mongodb import set_up_mongodb, get_data_from_mongodb, load_data_to_mongodb, \
     update_document
 import logging
@@ -89,7 +89,11 @@ car = api.model('Car', {
 
 class CarDAO(object):
     def __init__(self):
-        self.car_data = get_data_from_mongodb()
+        if len(get_data_from_mongodb()) > 0:  # The list is not empty
+            self.car_data = get_data_from_mongodb()
+        else:
+            self.car_data = [MyCar(vin='VF1RFD00653635032', plate_number='1234ABC', brand='DSTI', model='alpha',
+                                   color='White', num_seats=4, num_doors=5, num_wheels=4).json]
 
     def list(self) -> list:
         return self.car_data
@@ -136,7 +140,7 @@ class CarDAO(object):
         logging.error("Car {} doesn't exist".format(vin))
         api.abort(404, "Car {} doesn't exist".format(vin))
 
-    def create(self, new_car: dict) -> dict:
+    def create(self, new_car: dict) -> list:
         load_data_to_mongodb(Car(**new_car))
         return self.car_data
 
