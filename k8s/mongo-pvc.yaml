@@ -1,0 +1,12 @@
+# kubectl create -f mongo-pvc.yaml
+# Claim/obtain the storage created on mongo-pv.yaml and can be mounted on the mongo container.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 256Mi
