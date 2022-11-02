@@ -4,7 +4,7 @@ import unittest
 src_path = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) + '/smart_carapi/')
 sys.path.append(src_path)
 from smart_carapi.helpers.config_mongodb import update_document, get_data_from_mongodb, load_data_to_mongodb, \
-    set_up_mongodb, client
+    set_up_mongodb, get_client
 from smart_carapi.car_instance.car_singleton import Car
 
 
@@ -20,7 +20,7 @@ class MongoDBTest(unittest.TestCase):
             Test the correct connection with mongodb
         -OK: connected to mongodb
         """
-        self.assertTrue(client.server_info())
+        self.assertTrue(get_client().server_info())
 
     def test_mongodb_database_collection(self):
         """
@@ -29,9 +29,9 @@ class MongoDBTest(unittest.TestCase):
         """
         set_up_mongodb()
 
-        self.assertTrue("smartcars" in client.list_database_names())
+        self.assertTrue("smartcars" in get_client().list_database_names())
 
-        db = client['smartcars']
+        db = get_client()['smartcars']
         self.assertTrue("cars_data" in db.list_collection_names())
 
     def test_mongodb_only_one_car(self):
