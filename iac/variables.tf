@@ -103,7 +103,7 @@ variable "region" {
   default       = "us-east-1"
 }
 
-# This variable defines the AWS ACCESS KEY.
+/*# This variable defines the AWS ACCESS KEY.
 variable "access_key" {
   type          = string
   sensitive     = true
@@ -113,4 +113,4 @@ variable "access_key" {
 variable "secret_access_key" {
   type          = string
   sensitive     = true
-}
+}*/
