@@ -28,6 +28,6 @@ provider "docker" {}  # Pull the image from Docker Hub
 
 provider "aws" {  # Configure AWS
   region = var.region
-  access_key = var.access_key
-  secret_key = var.secret_access_key
+  #access_key = var.access_key
+  #secret_key = var.secret_access_key
 }

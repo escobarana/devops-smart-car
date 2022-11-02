@@ -96,17 +96,20 @@ variable "ecs_image_url" {
   default     = "docker.io/escobarana/smartcarapi:tf"
 }
 
+# This variable defines the AWS Region.
 variable "region" {
   description   = "region to use for AWS resources"
   type          = string
   default       = "us-east-1"
 }
 
+# This variable defines the AWS ACCESS KEY.
 variable "access_key" {
   type          = string
   sensitive     = true
 }
 
+# This variable defines the AWS SECRET ACCESS KEY.
 variable "secret_access_key" {
   type          = string
   sensitive     = true
