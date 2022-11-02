@@ -1,0 +1,10 @@
+# kubectl apply -k .
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - mongo-pv.yaml
+  - mongo-pvc.yaml
+  - mongo-deployment.yaml
+  - deployment.yaml
+

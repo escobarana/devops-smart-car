@@ -1,0 +1,13 @@
+# kubectl create -f mongo-pv.yaml
+# The contents of this volume persist, even if the MongoDB pod is deleted or moved to a different node.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-pv
+spec:
+  capacity:
+    storage: 256Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /tmp/db

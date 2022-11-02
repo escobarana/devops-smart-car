@@ -1,0 +1,49 @@
+# kubectl create -f mongo-deployment.yaml
+# Mongo deployment that creates a single instance of MongoDB server.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+  labels:
+    app: mongodb
+spec:
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo:latest
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: rootpassword
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: storage
+              mountPath: /data/db
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: mongo-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb  # IMPORTANT: same name as in the URL defined in smart_carapi folder [(...)@mongodb:27017/] -
+spec:                                                                                   # - from docker-compose services
+  selector:
+    app: mongodb
+  ports:
+    - port: 27017
+      protocol: TCP
+      targetPort: 27017
+  # Default type is ClusterIp.
+  # Makes the mongo pod accessible from within the cluster, but not from outside.
+  # The only resource that should have access to the MongoDB database is the flask app.

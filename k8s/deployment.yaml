@@ -1,0 +1,41 @@
+# kubectl create -f deployment.yaml
+# Deployment of the app running in a pod on any worker node.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smartcarapp
+  labels:
+    app: smartcarapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: smartcarapp
+  template:
+    metadata:
+      labels:
+        app: smartcarapp
+    spec:
+      containers:
+        - name: smartcarapp
+          image: escobarana/smartcarapi:latest
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: rootpassword
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smartcarapp-svc
+spec:
+  selector:
+    app: smartcarapp
+  ports:
+    - port: 8080
+      targetPort: 5000
+  type: LoadBalancer  # The LoadBalancer Service enables the pods in a deployment to be accessible from outside the cluster.
