@@ -1,8 +1,4 @@
-import os.path
-import sys
 import unittest
-src_path = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) + '/smart_carapi/')
-sys.path.append(src_path)
 import app as tested_app
 import json
 
@@ -16,7 +12,6 @@ class FlaskAppTest(unittest.TestCase):
             Test initial setup of the flask app
         -OK: Set up is fine
         """
-        sys.path.insert(0, "../smart_carapi")
         tested_app.app.config['TESTING'] = True
         self.app = tested_app.app.test_client()
 

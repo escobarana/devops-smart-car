@@ -21,3 +21,10 @@
 - Add Kubernetes manifest files (Flask app + mongo)  --- k8s
 - Configure deployment by adding Terraform configuration (using Terraform Cloud) --- IaC
 - Configure CD (with terraform) with GitHub Actions Workflow
+
+
+## v1.1.0
+
+- Refactor `smart_carapi` directory
+- Add monitoring with Prometheus and Grafana (personalised dashboard at `http://localhost:3000/d/smartcar` route)
+- Update GitHub Actions workflows to match refactoring

@@ -1,6 +1,6 @@
 import string
 import random
-from smart_carapi.car_instance.car_singleton import Car
+from car_instance.car_singleton import Car
 
 colors = ['RED', 'BLUE', 'PURPLE', 'BLACK', 'GREEN', 'WHITE', 'YELLOW', 'GRAY', 'PINK', 'ORANGE', 'NAVY BLUE', 'BROWN',
           'BEIGE', 'AQUA', 'MAROON', 'KHAKI', 'DARK RED', 'SEA GREEN', 'GOLDEN', 'BRONZE', 'AZURE', 'SILVER', 'TEAL']

@@ -1,14 +1,24 @@
-from flask import Flask
+from flask import Flask, Blueprint
 from flask_restx import Api, Resource, fields
-from smart_carapi.car_instance.car_singleton import Car as MyCar
-from smart_carapi.helpers.config_mongodb import set_up_mongodb, get_data_from_mongodb, load_data_to_mongodb, \
+from car_instance.car_singleton import Car as MyCar
+from helpers.config_mongodb import set_up_mongodb, get_data_from_mongodb, load_data_to_mongodb, \
     update_document
 import logging
+from prometheus_client import make_wsgi_app
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
+from werkzeug.serving import run_simple
+from flask_prometheus_metrics import register_metrics
+from prometheus_flask_exporter import PrometheusMetrics
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
 
+# Blueprint definition for monitoring purposes,
+MAIN = Blueprint("main", __name__)
+
 app = Flask(__name__)
+metrics = PrometheusMetrics(app, group_by='endpoint')  # Prometheus monitoring
+
 api = Api(app,
           version='1.0',
           title='Smart Car REST API',
@@ -168,6 +178,7 @@ DAO = CarDAO()
 
 
 @ns.route('/')
+@MAIN.route('/')
 class CarList(Resource):
     """Shows a list of all cars, and lets you POST to add/modify cars"""
 
@@ -188,6 +199,7 @@ class CarList(Resource):
 @ns.route('/<string:vin>/autonomy')
 @ns.response(404, 'Car not found')
 @ns.param('vin', 'The car identifier')
+@MAIN.route('/<string:vin>/autonomy')
 class Autonomy(Resource):
     @ns.doc('get_car_autonomy')
     @ns.marshal_with(autonomy, skip_none=True)
@@ -199,6 +211,7 @@ class Autonomy(Resource):
 @ns.route('/<string:vin>/engine')
 @ns.response(404, 'Car not found')
 @ns.param('vin', 'The car identifier')
+@MAIN.route('/<string:vin>/engine')
 class Engine(Resource):
     @ns.doc('get_car_engine')
     @ns.marshal_with(engine, skip_none=True)
@@ -210,6 +223,7 @@ class Engine(Resource):
 @ns.route('/<string:vin>/wheels')
 @ns.response(404, 'Car not found')
 @ns.param('vin', 'The car identifier')
+@MAIN.route('/<string:vin>/wheels')
 class Wheels(Resource):
     @ns.doc('get_car_wheels')
     @ns.marshal_with(wheel, skip_none=True)
@@ -221,6 +235,7 @@ class Wheels(Resource):
 @ns.route('/<string:vin>/seats')
 @ns.response(404, 'Car not found')
 @ns.param('vin', 'The car identifier')
+@MAIN.route('/<string:vin>/seats')
 class Seats(Resource):
     @ns.doc('get_car_seats')
     @ns.marshal_with(seat, skip_none=True)
@@ -232,6 +247,7 @@ class Seats(Resource):
 @ns.route('/<string:vin>/doors')
 @ns.response(404, 'Car not found')
 @ns.param('vin', 'The car identifier')
+@MAIN.route('/<string:vin>/doors')
 class Doors(Resource):
     @ns.doc('get_car_doors')
     @ns.marshal_with(door, skip_none=True)
@@ -243,6 +259,7 @@ class Doors(Resource):
 @ns.route('/<string:vin>')
 @ns.response(404, 'Car not found')
 @ns.param('vin', 'The car identifier')
+@MAIN.route('/<string:vin>')
 class Car(Resource):
     """Show a single car item and lets you delete them"""
 
@@ -262,5 +279,15 @@ class Car(Resource):
 # --- END ENDPOINTS --- #
 
 
+# --- MONITORING --- #
+# Provide app's version and deploy environment/config name to set a gauge metric
+app.register_blueprint(MAIN)
+register_metrics(app, app_version="v1.0", app_config="staging")
+
+# Plug metrics WSGI app to the app with dispatcher
+dispatcher = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})
+# --- MONITORING --- #
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    run_simple(hostname="0.0.0.0", port=5000, application=dispatcher)

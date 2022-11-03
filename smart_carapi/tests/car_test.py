@@ -1,18 +1,11 @@
-import os.path
-import sys
 import unittest
-src_path = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) + '/smart_carapi/')
-sys.path.append(src_path)
-from smart_carapi.helpers.car_factory import create_car
+from helpers.car_factory import create_car
 
 
 class CarTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(CarTest, self).__init__(*args, **kwargs)
         self.car = create_car()
-
-    def setUp(self):
-        sys.path.insert(0, "../smart_carapi")
 
     def test_singleton(self):
         """

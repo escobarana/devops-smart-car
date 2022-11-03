@@ -1,19 +1,12 @@
-import os.path
-import sys
 import unittest
-src_path = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) + '/smart_carapi/')
-sys.path.append(src_path)
-from smart_carapi.modules.door import Door
-from smart_carapi.helpers.position import Position
+from modules.door import Door
+from helpers.position import Position
 
 
 class DoorTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(DoorTest, self).__init__(*args, **kwargs)
         self.door = Door(Position.front_left)
-
-    def setUp(self):
-        sys.path.insert(0, "../smart_carapi")
 
     def test_state_door(self):
         """
