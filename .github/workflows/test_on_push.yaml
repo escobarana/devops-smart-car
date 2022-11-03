@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./smartcarapi
+        working-directory: ./smart_carapi
     strategy:
       matrix:
         python-version: [ 3.8 ]  # Using local settings
