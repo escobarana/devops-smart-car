@@ -1,18 +1,11 @@
-import os.path
-import sys
 import unittest
-src_path = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) + '/smart_carapi/')
-sys.path.append(src_path)
-from smart_carapi.modules.autonomy import Autonomy
+from modules.autonomy import Autonomy
 
 
 class AutonomyTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(AutonomyTest, self).__init__(*args, **kwargs)
         self.autonomy = Autonomy()
-
-    def setUp(self):
-        sys.path.insert(0, "../smart_carapi")
 
     def test_avg_consumption(self):
         """

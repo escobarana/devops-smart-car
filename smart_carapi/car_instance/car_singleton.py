@@ -1,5 +1,5 @@
-from smart_carapi.helpers.position import Position
-from smart_carapi.modules import Autonomy, Door, Engine, Seat, Wheel
+from helpers.position import Position
+from modules import Autonomy, Door, Engine, Seat, Wheel
 
 
 class Car(object):

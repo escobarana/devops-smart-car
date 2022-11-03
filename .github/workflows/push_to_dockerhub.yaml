@@ -18,6 +18,9 @@ jobs:
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Triggers only if dependent workflow is successful
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./smartcarapi
     steps:
       - name: Git checkout
         uses: actions/checkout@v3

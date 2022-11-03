@@ -1,6 +1,6 @@
 import pymongo
 import os
-from smart_carapi.car_instance.car_singleton import Car
+from car_instance.car_singleton import Car
 import logging
 
 logging.basicConfig()

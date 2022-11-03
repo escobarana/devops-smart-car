@@ -1,3 +1,8 @@
+# --- Project unrelated folders --- #
+iac
+image
+istio
+k8s
 Dockerfile
 README.md
 venv
@@ -6,6 +11,7 @@ docker-compose*.yml
 .git/*
 .gitignore
 .dockerignore
+# --- Project unrelated folders --- #
 
 # Created by .ignore support plugin (hsz.mobi)
 ### VirtualEnv template

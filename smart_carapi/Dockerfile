@@ -1,9 +1,10 @@
 # syntax=docker/dockerfile:1
 FROM python:3.8-alpine
 
-RUN mkdir "smartcar"
-COPY . /smartcar
-WORKDIR /smartcar
+RUN mkdir "smart_carapi"
+COPY . /smart_carapi
+
+WORKDIR smart_carapi
 
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -v -r requirements.txt
