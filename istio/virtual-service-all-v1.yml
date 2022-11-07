@@ -1,0 +1,34 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: swagger
+spec:
+  hosts:
+  - "flask.example.com"
+  gateways:
+  - smartcar-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /swagger.json
+    - uri:
+        prefix: /cars
+
+  - route:
+    - destination:
+        host: swagger
+        subset: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: cars
+spec:
+  hosts:
+  - cars
+  http:
+  - route:
+    - destination:
+        host: cars
+        subset: v1
+---
