@@ -1,17 +1,17 @@
 name: Build and push Docker image to Docker Hub
 on:
-  push:
-    branches:
-      - '*'
-  pull_request:
-    branches: [ main ]
+#   push:
+#     branches:
+#       - '*'
+#   pull_request:
+#     branches: [ main ]
 
 # When this workflow is in main or default branch, can use the 'workflow_run'
-#  workflow_run:  # Dependency between workflows
-#    workflows: ["Python CI"]
-#    types: [completed]
-#    branches:
-#      - '*'
+ workflow_run:  # Dependency between workflows
+   workflows: ["Python CI"]
+   types: [completed]
+   branches:
+     - 'main'
 
 jobs:
   push_to_registry:
