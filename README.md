@@ -24,8 +24,7 @@ Ana Escobar Llamazares - [ana.escobar-llamazares@edu.dsti.institute](mailto:ana.
                                 └── main.yml 
                         └── install 
                             └── tasks
-                                └── main.yml 
-            ├── README.md
+                                └── main.yml
             └── Vagrantfile 
         ├── terraform               : Bonus IaC using Terraform (HashiCorp)
             ├── .terraform
@@ -34,12 +33,11 @@ Ana Escobar Llamazares - [ana.escobar-llamazares@edu.dsti.institute](mailto:ana.
             ├── data.tf
             ├── main.tf
             ├── outputs.tf
-            ├── README.md
             ├── terraform.tfstate
             ├── terraform.tfstate.backup
             └── variables.tf 
         └── README.md               : Further explanations on IaC part
-    ├── image                       : Contains all the images used in the README.md files.
+    ├── image                       : Folder containing all the images used in the README.md files.
     ├── istio                       : Service Mesh using Istio
         ├── README.md               : Further explanations on Service Mesh
         └── canary-deployment.yml 
@@ -117,6 +115,73 @@ so it only redeploys the changes, if any. This makes the deployment faster.
 | `DOCKER_HUB_TOKEN`           | Docker Hub registry Token                               |
 | `TF_CLOUD_TOKEN`             | Terraform Cloud Token to automate the deployment in AWS |
 
+
+## Container orchestration using Docker Compose
+
+In the `docker-compose.yaml` file the following containers are defined:
+- **mongodb**: 
+  - using mongodb docker image
+  - default environment variables set
+  - port 27017
+  - volume defined
+- **mongo-express** (manages the database through the web browser)
+  - using mongo-express docker image
+  - default environment variables set
+  - depends on mongodb, which means it will wait until mongodb container is running
+  - port 8081
+- **web**
+  - using my docker image from my docher hub registry
+  - default environment variables set
+  - depends on mongodb, which means it will wait until mongodb container is running
+  - port 5000
+  - volume defined
+- **prometheus**
+  - using prom/prometheus docker image
+  - depends on the web application, which means it will wait until web container is running
+  - port 9090
+  - set volume config yml file from `monitoring > prometheus > prometheus.yml`
+- **grafana**
+  - using grafana/grafana-oss docker image
+  - depends on prometheus, which means it will wait until prometheus container is running
+  - port 3000
+  - set volumes from `monitoring > grafana ` (all files)
+
+All containers are defined in the same network `host`.
+
+
+### Run this configuration locally
+
+Open a terminal and locate yourself at the root of the project , `devops-smart-car`, and execute the following command 
+to run the configuration from the `docker-compose.yaml` file (make sure the docker daemon is running):
+```shell
+docker compose up
+```
+
+The first time it might take a while to download all the images if you don't have them already locally, after that you 
+can access the resources in your web browser:
+
+`localhost:8081` -> Mongo Express
+
+![Mongo Express port 8081](image/dockercompose_monitoring/mongo-express.png "Mongo Express")
+
+`localhost:5000` -> Flask Web Application
+
+![Flask Web Application port 5000](image/dockercompose_monitoring/web-container.png "Flask Web Application")
+
+`localhost:9090` -> Prometheus
+
+![Monitoring with Prometheus port 9090](image/dockercompose_monitoring/monitoring-prometheus.png "Prometheus")
+
+`localhost:3000` -> Grafana
+
+![Grafana personalised dashboard port 3000](image/dockercompose_monitoring/grafana-dashboards.png "Grafana Dashboard")
+
+![Grafana monitoring dashboard port 3000](image/dockercompose_monitoring/monitoring-grafana.png "Grafana Monitoring")
+
+
+To stop the containers simply type `Ctrl + C`.
+
+![Stop docker containers](image/dockercompose_monitoring/container-stop.png "Stop")
 
 # Bonus tasks:
 

@@ -1,1 +1,0 @@
-### https://aws.amazon.com/es/blogs/opensource/deploying-python-flask-microservices-to-aws-using-open-source-tools/
