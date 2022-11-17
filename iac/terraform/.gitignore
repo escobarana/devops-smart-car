@@ -1,5 +1,5 @@
 # Local .terraform directories
-**/.terraform/*
+.terraform/providers
 
 # Ignore local .git directories
 **/.git/*

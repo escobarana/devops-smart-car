@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./iac
+        working-directory: ./iac/terraform
 
     steps:
       - name: Git checkout
