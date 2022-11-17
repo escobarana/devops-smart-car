@@ -8,68 +8,68 @@ Ana Escobar Llamazares - [ana.escobar-llamazares@edu.dsti.institute](mailto:ana.
 
 ## Tree structure of the project
     ├── .github                     : CI/CD pipeline using GitHub Actions
-       └── workflows                : Contains yaml files that trigger the workflows in GitHub Actions.
-            ├── cd_terraform.yaml 
-            ├── push_to_dockerhub.yaml 
-            └── test_on_push.yaml 
+    |  └── workflows                : Contains yaml files that trigger the workflows in GitHub Actions.
+    |       ├── cd_terraform.yaml 
+    |       ├── push_to_dockerhub.yaml 
+    |       └── test_on_push.yaml 
     ├── iac                         : Infrastructure as Code
-        ├── vagrant                 : Configured VM with Vagrant and provisioned the virtual environment using Ansible
-            ├── .vagrant
-            ├── .gitignore
-            ├── playbooks
-                └── roles
-                    └── gitlab
-                        ├── healthchecks
-                            └── tasks
-                                └── main.yml 
-                        └── install 
-                            └── tasks
-                                └── main.yml
-            └── Vagrantfile 
-        ├── terraform               : Bonus IaC using Terraform (HashiCorp)
-            ├── .terraform
-            ├── .gitignore
-            ├── config.tf
-            ├── data.tf
-            ├── main.tf
-            ├── outputs.tf
-            ├── terraform.tfstate
-            ├── terraform.tfstate.backup
-            └── variables.tf 
-        └── README.md               : Further explanations on IaC part
+    |   ├── vagrant                 : Configured VM with Vagrant and provisioned the virtual environment using Ansible
+    |   |   ├── .vagrant
+    |   |   ├── .gitignore
+    |   |   ├── playbooks
+    |   |   |   └── roles
+    |   |   |       └── gitlab
+    |   |   |           ├── healthchecks
+    |   |   |           |  └── tasks
+    |   |   |           |        └── main.yml 
+    |   |   |           └── install 
+    |   |   |               └── tasks
+    |   |   |                   └── main.yml
+    |   |   └── Vagrantfile 
+    |   ├── terraform               : Bonus IaC using Terraform (HashiCorp)
+    |   |   ├── .terraform
+    |   |   ├── .gitignore
+    |   |   ├── config.tf
+    |   |   ├── data.tf
+    |   |   ├── main.tf
+    |   |   ├── outputs.tf
+    |   |   ├── terraform.tfstate
+    |   |   ├── terraform.tfstate.backup
+    |   |   └── variables.tf 
+    |   └── README.md               : Further explanations on IaC part
     ├── image                       : Folder containing all the images used in the README.md files.
     ├── istio                       : Service Mesh using Istio
-        ├── README.md               : Further explanations on Service Mesh
-        └── canary-deployment.yml 
+    |   ├── README.md               : Further explanations on Service Mesh
+    |   └── canary-deployment.yml 
     ├── k8s                         : Docker orchestration using Kubernetes, configuration files
-        ├── deployment.yaml
-        ├── kustomization.yaml
-        ├── mongo-deployment.yaml
-        ├── mongo-pv.yaml
-        ├── mongo-pvc.yaml 
-        └── README.md
+    |   ├── deployment.yaml
+    |   ├── kustomization.yaml
+    |   ├── mongo-deployment.yaml
+    |   ├── mongo-pv.yaml
+    |   ├── mongo-pvc.yaml 
+    |   └── README.md
     ├── monitoring                  : Monitoring part using Prometheus and Grafana
-        ├── grafana
-            ├── dashboards
-                └── web.json
-            ├── config.ini
-            ├── dashboard.yml
-            └── datasource.yml
-        ├── prometheus
-            └── prometheus.yml
-        └── README.md               : Further explanations on Monitoring part
+    |   ├── grafana
+    |   |   ├── dashboards
+    |   |   |   └── web.json
+    |   |   ├── config.ini
+    |   |   ├── dashboard.yml
+    |   |   └── datasource.yml
+    |   ├── prometheus
+    |   |   └── prometheus.yml
+    |   └── README.md               : Further explanations on Monitoring part
     ├── smart_carapi                : Main application
-        ├── car_instance
-        ├── helpers
-        ├── modules
-        ├── tests
-        ├── .dockerignore
-        ├── __init__.py
-        ├── app.py
-        ├── CHANGELOG.md
-        ├── Dockerfile
-        ├── README.md
-        └── requirements.txt 
+    |   ├── car_instance
+    |   ├── helpers
+    |   ├── modules
+    |   ├── tests
+    |   ├── .dockerignore
+    |   ├── __init__.py
+    |   ├── app.py
+    |   ├── CHANGELOG.md
+    |   ├── Dockerfile
+    |   ├── README.md
+    |   └── requirements.txt 
     ├── .env                        : File to store environment variables (not published)
     ├── .gitignore      
     ├── __init__.py
@@ -130,7 +130,7 @@ In the `docker-compose.yaml` file the following containers are defined:
   - depends on mongodb, which means it will wait until mongodb container is running
   - port 8081
 - **web**
-  - using my docker image from my docher hub registry
+  - using my docker image from my docker hub registry
   - default environment variables set
   - depends on mongodb, which means it will wait until mongodb container is running
   - port 5000
@@ -192,6 +192,7 @@ To stop the containers simply type `Ctrl + C`.
   - Application fully tested
   - Several endpoints developed
   - Used environment variables for security
+  - Implemented monitoring with Prometheus
 - **Part 2 - CI/CD Pipeline:**
   - Deployment (CD) using AWS (Amazon Web Services)
   - Used GitHub Secrets for security
