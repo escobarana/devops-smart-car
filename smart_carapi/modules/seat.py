@@ -34,7 +34,7 @@ class Seat:
         self._occupied = val
 
     # --- GETTERS AND SETTERS --- #
-    def seat_occupy(self):
+    def set_occupy(self):
         self.occupied = 1
 
     def set_vacancy(self):
