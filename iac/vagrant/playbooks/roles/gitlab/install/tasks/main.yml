@@ -42,7 +42,7 @@
 
 - name: Download GitLab install script
   get_url:
-    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh
+    url: https://packages.vagrant.com/install/repositories/vagrant/vagrant-ee/script.rpm.sh
     dest: /tmp/script.rpm.sh
 
 - name: Execute GitLab install script
@@ -50,6 +50,6 @@
 
 - name: Install GitLab
   yum:
-    name: gitlab-ee
+    name: vagrant-ee
   environment:
-    EXTERNAL_URL: http://gitlab.local
+    EXTERNAL_URL: http://vagrant.local

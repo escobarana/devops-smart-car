@@ -13,7 +13,7 @@ Ana Escobar Llamazares - [ana.escobar-llamazares@edu.dsti.institute](mailto:ana.
             ├── push_to_dockerhub.yaml 
             └── test_on_push.yaml 
     ├── iac                         : Infrastructure as Code
-        ├── gitlab                  : Configured VM with Vagrant and provisioned the virtual environment using Ansible
+        ├── vagrant                 : Configured VM with Vagrant and provisioned the virtual environment using Ansible
             ├── .vagrant
             ├── .gitignore
             ├── playbooks
@@ -198,6 +198,7 @@ To stop the containers simply type `Ctrl + C`.
 - **Part 3 - IaC:**
   - Terraform
   - Automatize process through GitHub Actions to re-deploy on every push/pull-request
+  - GitLab -> Added more health checks
 - **Part 4 - Build Docker image:**
   - Automatize process through GitHub Actions to build and push Docker Image on every push/pull request
 - **Part 5 - Container Orchestration using Docker Compose:**
