@@ -28,3 +28,7 @@
 - Refactor `smart_carapi` directory
 - Add monitoring with Prometheus and Grafana (personalised dashboard at `http://localhost:3000/d/smartcar` route)
 - Update GitHub Actions workflows to match refactoring
+
+## v1.2.0
+
+- Add Canary Deployment using Istio for service mesh
