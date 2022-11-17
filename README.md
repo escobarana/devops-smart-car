@@ -184,6 +184,7 @@ To stop the containers simply type `Ctrl + C`.
 ![Stop docker containers](image/dockercompose_monitoring/container-stop.png "Stop")
 
 # Bonus tasks:
+*HERE ARE ONLY MENTIONED THE BONUS TASKS PERFORMED, PLEASE REFER TO THE README.md FILES OF EACH FOLDER FOR FURTHER EXPLANATIONS ON EACH PART*
 
 - **Part 1 - Web application:**
   - Python programming language (Flask REST API)
@@ -211,3 +212,12 @@ To stop the containers simply type `Ctrl + C`.
     - Created a branch for the development of each part
     - Pull request for each merge into main branch
     - Squash merges on pull requests to main branch
+
+
+# Useful Links
+
+- **Docker Hub Registry Link:** [https://hub.docker.com/repository/docker/escobarana/smartcarapi](url:https://hub.docker.com/repository/docker/escobarana/smartcarapi)
+- **Terraform Cloud:** [https://app.terraform.io/app/escobarana/workspaces/gh-actions-smartcar](url:https://app.terraform.io/app/escobarana/workspaces/gh-actions-smartcar)
+- **AWS Deployment:** [http://ecsalb-243129581.us-east-1.elb.amazonaws.com](url:http://ecsalb-243129581.us-east-1.elb.amazonaws.com)
+
+*Note that AWS deployment might not be available since the resources are destroyed to avoid unnecessary charges*

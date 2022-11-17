@@ -1,11 +1,10 @@
 # Web Application
 
-
 ## Specifications
 
 This Web Application was created using Python programming language with Flask and Swagger, and Mongo Database for data 
 storage.
-It consists of a Web Application that manages your smart car(s). 
+It consists of a Web Application that manages and monitors your smart car(s). 
 It's implemented using the `Singleton Pattern` so only one instance of the car is available per container.
 This would be the software architecture of the system:
 
@@ -68,7 +67,7 @@ using your browser.
 
 ![Command Line showing both URLs](../image/api/mainapp-terminal.png "Command Line")
 
-What you will see is the Swagger Documentation located in the main root. From this documentation, you can visualize the
+What you will see is the Swagger Documentation located in the main root. From this documentation, you can visualise the
 available models to have a more clear image of the system and under the `operations` tab you are able to make API calls
 against the Mongo Database. By default, there's one Car in the database so the responses will never be empty.
 This system is built this way because it was thought to be integrated with minimum one smart car, more can be added if 
@@ -77,7 +76,7 @@ one owner has several smart cars.
 ![Main Page using Flask and Swagger](../image/api/swagger-main.png "Main Page")
 
 
-## Run Docker
+## Run using Docker
 
 In this part, `Dockerfile` file and `.dockerignore` are used to build the Docker image of the application and push it to
 the Docker Hub Registry. This action is triggered automatically thanks to GitHub Actions once a new change is pushed to 

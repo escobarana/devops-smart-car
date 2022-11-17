@@ -89,4 +89,8 @@ Balancer DNS name. This is the public URL to access the Web Application in any b
 This whole process is now automatize using GitHub Actions. See the workflow in `.github > workflows > cd_terraform.yaml`
 file. It is triggered in every push/pull request and the deployment and .tfstate updated accordingly.
 
-**Note**: A new tag for the Docker image was created for this deployment. `smartcarapi:tf` is the image used for this deployment.
+**Note1**: A new tag for the Docker image was created for this deployment. `smartcarapi:tf` is the image used for the 
+deployment in terraform.
+
+**Note2**: Since AWS is a paid service, the resources are destroyed after terraform is applied and the web application
+deployed in the cloud to avoid unnecessary charges.

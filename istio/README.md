@@ -9,7 +9,7 @@ Types of profiles available:
 
 ![Istio profiles](../image/istio/istio-profiles.png "Istio profiles")
 
-Istioctl is installed using demo profile since it's the most complete one:
+Chose to install the demo profile with istioctl since it's the most complete one:
 
 ````shell
 istioctl install --set profile=demo -y
@@ -53,7 +53,7 @@ kubectl get ns --show-labels
 ![Istio labels namespace](../image/istio/istio-labels.png "Istio labels")
 
 
-The app deployment was done from the Kubernetes part.
+The application deployment was done from the Kubernetes part, let's check the pods:
 
 ````shell
 kubectl get pods -o wide
@@ -116,7 +116,7 @@ To apply this configuration:
 kubectl apply -f canary-deployment.yml
 ````
 
-To access the service through the web browser:
+To access the service through the web browser we use minikube to build a tunnel:
 
 ````shell
 minikube service smartcarapp-svc
